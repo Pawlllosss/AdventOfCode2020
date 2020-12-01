@@ -3,7 +3,7 @@ package task1.part1
 class ExpenseReportSolver {
 
     fun findExpensesMultiplication(expenses: List<Int>, targetSum: Int): Int? {
-        val maximumExpense = expenses.max() ?: Int.MAX_VALUE
+        val maximumExpense = getMaximumExpense(expenses)
         val sortedAndFilteredExpenses = sortAndFilterExpensesList(expenses, targetSum)
 
         for ((index1, expense1) in sortedAndFilteredExpenses.withIndex()) {
@@ -29,6 +29,8 @@ class ExpenseReportSolver {
         return null
     }
 
+    private fun getMaximumExpense(expenses: List<Int>) = expenses.max() ?: Int.MAX_VALUE
+
     private fun sortAndFilterExpensesList(expenses: List<Int>, targetSum: Int): List<Int> {
         return expenses.sorted()
             .filter { expense -> expense <= targetSum }
@@ -40,7 +42,7 @@ class ExpenseReportSolver {
         targetSum: Int
     ) = expense + maximumExpense < targetSum
 
-    private fun tooBigExpenseToGetTargetSum(expense1: Int, targetSum: Int) = 2 * expense1 > targetSum
+    private fun tooBigExpenseToGetTargetSum(expense: Int, targetSum: Int) = 2 * expense > targetSum
 
     private fun tooBigExpensesToGetTargetSum(
         expense1: Int,

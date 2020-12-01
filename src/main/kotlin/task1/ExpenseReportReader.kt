@@ -1,4 +1,4 @@
-package task1.part1
+package task1
 
 import java.io.BufferedReader
 import java.io.File

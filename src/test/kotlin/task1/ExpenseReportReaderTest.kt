@@ -1,11 +1,11 @@
-package task1.part1
+package task1
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 internal class ExpenseReportReaderTest {
 
-    private val fileName = "src/test/kotlin/task1/part1/resource/exampleExpenseReport.txt"
+    private val fileName = "src/test/kotlin/task1/resource/exampleExpenseReport.txt"
     private val expenseReportReader = ExpenseReportReader()
 
     @Test

@@ -21,6 +21,7 @@ internal class ExpenseReportTripletSolverTest {
         "22, 350",
         "449, 21700",
         "1,",
+        "25,",
         "666666,"
     )
     fun shouldReturnMultiplicationResultOfTargetSum(targetSum: Int, multiplicationResult: Int?) {

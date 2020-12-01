@@ -21,6 +21,7 @@ internal class ExpenseReportSolverTest {
         "118, 565",
         "444, 4340",
         "1,",
+        "10,",
         "666,"
     )
     fun shouldReturnMultiplicationResultOfTargetSum(targetSum: Int, multiplicationResult: Int?) {

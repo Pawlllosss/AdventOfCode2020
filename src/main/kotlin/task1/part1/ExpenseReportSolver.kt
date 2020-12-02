@@ -5,25 +5,19 @@ class ExpenseReportSolver {
     fun findExpensesMultiplication(expenses: List<Int>, targetSum: Int): Int? {
         val maximumExpense = getMaximumExpense(expenses)
         val sortedAndFilteredExpenses = sortAndFilterExpensesList(expenses, targetSum)
+        val spottedExpenses = HashSet<Int>()
 
-        for ((index1, expense1) in sortedAndFilteredExpenses.withIndex()) {
-            if (tooSmallExpenseToGetTargetSum(expense1, maximumExpense, targetSum)) {
+
+        for (expense in sortedAndFilteredExpenses) {
+            if (isTooSmallExpenseToGetTargetSum(expense, maximumExpense, targetSum)) {
                 continue
             }
-            if (tooBigExpenseToGetTargetSum(expense1, targetSum)) {
-                return null
-            }
 
-            for (index2 in index1 + 1 until sortedAndFilteredExpenses.size) {
-                val expense2 = sortedAndFilteredExpenses[index2]
-
-                if (tooBigExpensesToGetTargetSum(expense1, expense2, targetSum)) {
-                    break
-                }
-                if (expense1 + expense2 == targetSum) {
-                    return expense1 * expense2
-                }
+            val remainingSum = targetSum - expense
+            if (isPossibleToGetTargetSum(spottedExpenses, remainingSum)) {
+                return expense * remainingSum
             }
+            spottedExpenses.add(expense)
         }
 
         return null
@@ -36,17 +30,14 @@ class ExpenseReportSolver {
             .filter { expense -> expense <= targetSum }
     }
 
-    private fun tooSmallExpenseToGetTargetSum(
+    private fun isTooSmallExpenseToGetTargetSum(
         expense: Int,
         maximumExpense: Int,
         targetSum: Int
     ) = expense + maximumExpense < targetSum
 
-    private fun tooBigExpenseToGetTargetSum(expense: Int, targetSum: Int) = 2 * expense > targetSum
-
-    private fun tooBigExpensesToGetTargetSum(
-        expense1: Int,
-        expense2: Int,
-        targetSum: Int
-    ) = expense1 + expense2 > targetSum
+    private fun isPossibleToGetTargetSum(
+        spottedExpenses: Set<Int>,
+        remaining: Int
+    ) = spottedExpenses.contains(remaining)
 }

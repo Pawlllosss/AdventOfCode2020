@@ -8,10 +8,10 @@ class ExpenseReportTripletSolver {
         val existingSums = HashMap<Int, Pair<Int, Int>>()
 
         for ((index1, expense1) in sortedAndFilteredExpenses.withIndex()) {
-            if (tooSmallExpenseToGetTargetSum(expense1, maximumExpense, targetSum)) {
+            if (isTooSmallExpenseToGetTargetSum(expense1, maximumExpense, targetSum)) {
                 continue
             }
-            if (tooBigExpenseToGetTargetSum(expense1, targetSum)) {
+            if (isTooBigExpenseToGetTargetSum(expense1, targetSum)) {
                 return null
             }
 
@@ -38,16 +38,16 @@ class ExpenseReportTripletSolver {
             .filter { expense -> expense <= targetSum }
     }
 
-    private fun tooSmallExpenseToGetTargetSum(
+    private fun isTooSmallExpenseToGetTargetSum(
         expense: Int,
         maximumExpense: Int,
         targetSum: Int
     ) = expense + 2 * maximumExpense < targetSum
 
-    private fun tooBigExpenseToGetTargetSum(expense: Int, targetSum: Int) = 3 * expense > targetSum
+    private fun isTooBigExpenseToGetTargetSum(expense: Int, targetSum: Int) = 3 * expense > targetSum
 
     private fun isPossibleToGetTargetSum(
-        sums: HashMap<Int, Pair<Int, Int>>,
+        sums: Map<Int, Pair<Int, Int>>,
         remaining: Int
     ) = sums.contains(remaining)
 

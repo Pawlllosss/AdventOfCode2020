@@ -6,9 +6,9 @@ import org.junit.jupiter.params.provider.CsvSource
 import task2.PasswordEntry
 import task2.PasswordPolicy
 
-internal class PasswordEntryValidatorTest {
+internal class PasswordOccurrenceValidatorTest {
 
-    private val passwordEntryValidator = PasswordEntryValidator()
+    private val passwordEntryValidator = PasswordOccurrenceValidator()
 
     @ParameterizedTest
     @CsvSource(
@@ -18,7 +18,7 @@ internal class PasswordEntryValidatorTest {
         "3, 5, a, aaaaaa, false",
         "1, 1, a, abcabc, false"
     )
-    fun shouldValidateBasedOnGivenPolicy(min: Int, max: Int, character: Char, password: String, valid: Boolean) {
+    fun shouldValidateBasedOnOccurrencePolicy(min: Int, max: Int, character: Char, password: String, valid: Boolean) {
         // GIVEN
         val passwordEntry = PasswordEntry(PasswordPolicy(min, max, character), password)
 

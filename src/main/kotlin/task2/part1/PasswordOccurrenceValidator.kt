@@ -1,10 +1,11 @@
 package task2.part1
 
 import task2.PasswordEntry
+import task2.PasswordValidator
 
-class PasswordEntryValidator {
+class PasswordOccurrenceValidator: PasswordValidator {
 
-    fun isValid(passwordEntry: PasswordEntry): Boolean {
+    override fun isValid(passwordEntry: PasswordEntry): Boolean {
         val (policy, password) = passwordEntry
         val (minUse, maxUse, checkedCharacter) = policy
 

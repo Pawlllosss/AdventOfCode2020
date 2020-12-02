@@ -1,13 +1,12 @@
-package task2.part1
+package task2
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import task2.PasswordEntry
-import task2.PasswordPolicy
+import task2.part1.PasswordOccurrenceValidator
 
 internal class PasswordEntryCounterTest {
 
-    private val passwordEntryValidator = PasswordEntryValidator()
+    private val passwordEntryValidator = PasswordOccurrenceValidator()
     private val passwordEntryCounter = PasswordEntryCounter(passwordEntryValidator)
 
     @Test

@@ -1,3 +1,3 @@
 package task2
 
-data class PasswordPolicy(val minUse: Int, val maxUse: Int, val checkedCharacter: Char)
+data class PasswordPolicy(val arg1: Int, val arg2: Int, val checkedCharacter: Char)

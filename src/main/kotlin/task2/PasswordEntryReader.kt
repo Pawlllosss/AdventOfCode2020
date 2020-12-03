@@ -1,16 +1,14 @@
 package task2
 
+import utils.FileUtils
 import java.io.BufferedReader
-import java.io.File
 
 class PasswordEntryReader {
 
     fun getEntries(passwordsFileName: String): List<PasswordEntry> {
-        val bufferedReader = getBufferedReader(passwordsFileName)
+        val bufferedReader = FileUtils.getBufferedReader(passwordsFileName)
         return readEntriesFromFile(bufferedReader)
     }
-
-    private fun getBufferedReader(name: String) = File(name).inputStream().bufferedReader()
 
     private fun readEntriesFromFile(bufferedReader: BufferedReader): ArrayList<PasswordEntry> {
         val entries = ArrayList<PasswordEntry>()

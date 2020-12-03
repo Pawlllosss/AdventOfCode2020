@@ -7,6 +7,7 @@ import task2.PasswordEntry
 import task2.PasswordPolicy
 
 internal class TobogganPasswordValidatorTest {
+
     private val passwordEntryValidator = TobogganPasswordValidator()
 
     @ParameterizedTest

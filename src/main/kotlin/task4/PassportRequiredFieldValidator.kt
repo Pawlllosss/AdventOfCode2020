@@ -1,13 +1,13 @@
-package task4.part1
+package task4
 
 import task4.Passport
 import task4.PassportFieldsRepository
 
-class PassportValidator(passportFieldsRepository: PassportFieldsRepository) {
+class PassportRequiredFieldValidator(passportFieldsRepository: PassportFieldsRepository) {
 
     private val requiredFields: Set<String> = passportFieldsRepository.getRequiredFields()
 
-    fun containsMandatoryFields(passport: Passport): Boolean {
+    fun isValid(passport: Passport): Boolean {
         val passportFields = passport.fields
         val fieldNames: Set<String> = passportFields.keys
 

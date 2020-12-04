@@ -1,14 +1,15 @@
-package task4.part1
+package task4
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import task4.Passport
 import task4.PassportFieldsRepository
+import task4.PassportRequiredFieldValidator
 
-internal class PassportValidatorTest {
+internal class PassportRequiredFieldValidatorTest {
 
     private val passportFieldsRepository = PassportFieldsRepository()
-    private val passportValidator = PassportValidator(passportFieldsRepository)
+    private val passportValidator = PassportRequiredFieldValidator(passportFieldsRepository)
 
     @Test
     fun shouldReturnTrueWhenPassportContainsAllMandatoryFields() {
@@ -26,7 +27,7 @@ internal class PassportValidatorTest {
         val passport = Passport(passportFields)
 
         // WHEN
-        val result = passportValidator.containsMandatoryFields(passport)
+        val result = passportValidator.isValid(passport)
 
         // THEN
         assertThat(result).isTrue()
@@ -46,7 +47,7 @@ internal class PassportValidatorTest {
         val passport = Passport(passportFields)
 
         // WHEN
-        val result = passportValidator.containsMandatoryFields(passport)
+        val result = passportValidator.isValid(passport)
 
         // THEN
         assertThat(result).isFalse()

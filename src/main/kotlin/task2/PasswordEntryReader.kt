@@ -10,7 +10,7 @@ class PasswordEntryReader {
         return readEntriesFromFile(bufferedReader)
     }
 
-    private fun readEntriesFromFile(bufferedReader: BufferedReader): ArrayList<PasswordEntry> {
+    private fun readEntriesFromFile(bufferedReader: BufferedReader): List<PasswordEntry> {
         val entries = ArrayList<PasswordEntry>()
         bufferedReader.useLines { lines ->
             lines.forEach {

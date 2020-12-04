@@ -10,7 +10,7 @@ class ExpenseReportReader {
         return readExpensesFromFile(bufferedReader)
     }
 
-    private fun readExpensesFromFile(bufferedReader: BufferedReader): ArrayList<Int> {
+    private fun readExpensesFromFile(bufferedReader: BufferedReader): List<Int> {
         val expenses = ArrayList<Int>()
         bufferedReader.useLines { lines ->
             lines.forEach {

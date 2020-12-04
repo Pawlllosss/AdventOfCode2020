@@ -1,29 +1,25 @@
 package task4.part2.validator.field
 
-import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
-internal class EyeColorValidatorTest {
+internal class HairColorValidatorTest {
 
     @ParameterizedTest
     @CsvSource(
-        "amb, true",
-        "blu, true",
-        "brn, true",
-        "gry, true",
-        "grn, true",
-        "hzl, true",
-        "oth, true",
-        "cpc, false",
-        "eee, false"
+        "'#aaaaaa', true",
+        "'#434434', true",
+        "4343433, false",
+        "434341, false",
+        "1, false"
     )
     fun shouldValidateIfEyeColorIsCorrect(color: String, result: Boolean) {
         // GIVEN
-        val validator = EyeColorValidator()
+        val validator = HairColorValidator()
         val fields = mapOf(
-            Pair("ecl", color),
+            Pair("hcl", color),
             Pair("redHerring", "test")
         )
 
@@ -31,19 +27,20 @@ internal class EyeColorValidatorTest {
         val valid = validator.isFieldValid(fields)
 
         // THEN
-        assertThat(valid).isEqualTo(result)
+        Assertions.assertThat(valid).isEqualTo(result)
     }
 
     @Test
     fun shouldReturnFalseWhenEyeColorFieldDoesNotExist() {
         // GIVEN
-        val validator = EyeColorValidator()
-        val fields = mapOf(Pair("col", "test"))
+        val validator = HairColorValidator()
+        val fields = mapOf(Pair("not", "test"))
 
         // WHEN
         val result = validator.isFieldValid(fields)
 
         // THEN
-        assertThat(result).isFalse()
+        Assertions.assertThat(result).isFalse()
     }
+
 }

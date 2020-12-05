@@ -42,5 +42,4 @@ internal class HairColorValidatorTest {
         // THEN
         Assertions.assertThat(result).isFalse()
     }
-
 }

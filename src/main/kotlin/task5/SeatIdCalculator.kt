@@ -2,7 +2,7 @@ package task5
 
 class SeatIdCalculator {
 
-    fun calculateSeatId(boardingPass: BoardingPass): Long {
-        return ((boardingPass.row shl 3) + boardingPass.column).toLong()
+    fun calculateSeatId(airplaneSeat: AirplaneSeat): Long {
+        return ((airplaneSeat.row shl 3) + airplaneSeat.column).toLong()
     }
 }

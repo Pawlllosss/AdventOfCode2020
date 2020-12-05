@@ -17,10 +17,10 @@ internal class SeatIdCalculatorTest {
     )
     fun shouldCalculateSeatId(row: Int, column: Int, expectedId: Long) {
         // GIVEN
-        val boardingPass = BoardingPass(row, column)
+        val airplaneSeat = AirplaneSeat(row, column)
 
         // WHEN
-        val seatId = seatIdCalculator.calculateSeatId(boardingPass)
+        val seatId = seatIdCalculator.calculateSeatId(airplaneSeat)
 
         // THEN
         assertThat(seatId).isEqualTo(expectedId)

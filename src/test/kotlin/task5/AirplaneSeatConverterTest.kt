@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
-internal class BoardingPassConverterTest {
+internal class AirplaneSeatConverterTest {
 
     @ParameterizedTest
     @CsvSource(
@@ -21,13 +21,13 @@ internal class BoardingPassConverterTest {
         expectedColumn: Int
     ) {
         // GIVEN
-        val converter = BoardingPassConverter()
+        val converter = AirplaneSeatConverter()
 
         // WHEN
-        val boardingPass = converter.convertBinaryPartitioningToBoardingPass(spacePartitioning, rows, columns)
+        val airplaneSeat = converter.convertBinaryPartitioningToBoardingPass(spacePartitioning, rows, columns)
 
         // THEN
-        val expectedBoardingPass = BoardingPass(expectedRow, expectedColumn)
-        assertThat(boardingPass).isEqualTo(expectedBoardingPass)
+        val expectedBoardingPass = AirplaneSeat(expectedRow, expectedColumn)
+        assertThat(airplaneSeat).isEqualTo(expectedBoardingPass)
     }
 }

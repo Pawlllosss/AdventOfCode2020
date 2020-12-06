@@ -2,11 +2,19 @@ package task6
 
 class AnswersCounter {
 
-    fun countQuestionsConfirmedWithinGroup(group: Group): Int {
+    fun countQuestionsConfirmedByAnyoneWithinGroup(group: Group): Int {
         val groupAnswers: List<Answers> = group.groupAnswers
-        val confirmedQuestions = groupAnswers.flatMap(Answers::confirmedQuestions)
+        val answeredByAnyone = groupAnswers.flatMap(Answers::confirmedQuestions)
             .toSet()
 
-        return confirmedQuestions.size
+        return answeredByAnyone.size
+    }
+
+    fun countQuestionsConfirmedByEveryoneWithinGroup(group: Group): Int {
+        val groupAnswers: List<Answers> = group.groupAnswers
+        val answeredByEveryone = groupAnswers.map(Answers::confirmedQuestions)
+            .reduce { everyoneAnswers, answers -> everyoneAnswers.intersect(answers) }
+
+        return answeredByEveryone.size
     }
 }

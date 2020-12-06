@@ -8,15 +8,28 @@ internal class AnswersCounterTest {
     private val answersCounter = AnswersCounter()
 
     @Test
-    fun shouldCountConfirmedQuestionsWithinGroup() {
+    fun shouldCountQuestionsConfirmedByAnyoneWithinGroup() {
         // GIVEN
         val group = getGroup()
 
         // WHEN
-        val confirmedQuestions = answersCounter.countQuestionsConfirmedWithinGroup(group)
+        val confirmedQuestions = answersCounter.countQuestionsConfirmedByAnyoneWithinGroup(group)
 
         // THEN
         val expectedCount = 6
+        assertThat(confirmedQuestions).isEqualTo(expectedCount)
+    }
+
+    @Test
+    fun shouldCountQuestionsConfirmedByEveryoneWithinGroup() {
+        // GIVEN
+        val group = getGroup()
+
+        // WHEN
+        val confirmedQuestions = answersCounter.countQuestionsConfirmedByEveryoneWithinGroup(group)
+
+        // THEN
+        val expectedCount = 2
         assertThat(confirmedQuestions).isEqualTo(expectedCount)
     }
 
@@ -24,8 +37,8 @@ internal class AnswersCounterTest {
         return Group(
             listOf(
                 Answers(setOf('a', 'b', 'z')),
-                Answers(setOf('a', 'c', 'z')),
-                Answers(setOf('d', 'b', 'x'))
+                Answers(setOf('a', 'b', 'c', 'z')),
+                Answers(setOf('a', 'd', 'b', 'x'))
             )
         )
     }

@@ -1,4 +1,4 @@
-package task6.part1
+package task6.part2
 
 import task6.AnswersCounter
 import task6.GroupReader

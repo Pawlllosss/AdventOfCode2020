@@ -1,8 +1,8 @@
 package task7
 
-class LuggageParentMapCreator {
+class ParentBagsHierarchyCreator {
 
-    fun createParentMap(luggageRules: List<LuggageRule>): Map<String, Set<Pair<String, Int>>> {
+    fun createParentHierarchy(luggageRules: List<LuggageRule>): Map<String, Set<Pair<String, Int>>> {
         val childByParent = HashMap<String, MutableSet<Pair<String, Int>>>()
 
         for ((parentColor, childBags) in luggageRules) {

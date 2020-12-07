@@ -3,9 +3,9 @@ package task7
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-internal class LuggageParentMapCreatorTest {
+internal class ParentBagsHierarchyCreatorTest {
 
-    private val luggageParentMapCreator = LuggageParentMapCreator()
+    private val parentBagsHierarchyCreator = ParentBagsHierarchyCreator()
 
     @Test
     fun shouldCreateLuggageParentMap() {
@@ -13,7 +13,7 @@ internal class LuggageParentMapCreatorTest {
         val luggageRules = getLuggageRules()
 
         // WHEN
-        val parentMap = luggageParentMapCreator.createParentMap(luggageRules)
+        val parentMap = parentBagsHierarchyCreator.createParentHierarchy(luggageRules)
 
         // THEN
         assertThat(parentMap.size).isEqualTo(7)

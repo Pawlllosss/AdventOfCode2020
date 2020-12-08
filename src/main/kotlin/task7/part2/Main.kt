@@ -1,4 +1,4 @@
-package task7.part1
+package task7.part2
 
 import task7.LuggageRuleConverter
 import task7.LuggageRuleReader
@@ -12,6 +12,6 @@ fun main() {
     val hierarchyCreator = ParentBagsHierarchyCreator()
     val counter = BagsCounter()
     val luggageRules = rulesReader.getLuggageRules(rulesPath)
-    val hierarchy = hierarchyCreator.createParentHierarchy(luggageRules)
-    println(counter.countParentBags("shiny gold", hierarchy))
+    val childrenHierarchy = hierarchyCreator.createChildHierarchy(luggageRules)
+    println(counter.countChildBagsRequiredInBag("shiny gold", childrenHierarchy))
 }

@@ -16,4 +16,19 @@ class ParentBagsHierarchyCreator {
 
         return childByParent
     }
+
+    fun createChildHierarchy(luggageRules: List<LuggageRule>): Map<String, Set<Pair<String, Int>>> {
+        val parentByChild = HashMap<String, MutableSet<Pair<String, Int>>>()
+
+        for ((parentColor, childBags) in luggageRules) {
+            for (child in childBags) {
+                val childColor = child.first
+                val quantity = child.second
+                val childInfo = childColor to quantity
+                parentByChild[parentColor]?.add(childInfo) ?: parentByChild.put(parentColor, mutableSetOf(childInfo))
+            }
+        }
+
+        return parentByChild
+    }
 }

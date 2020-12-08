@@ -8,16 +8,34 @@ internal class ParentBagsHierarchyCreatorTest {
     private val parentBagsHierarchyCreator = ParentBagsHierarchyCreator()
 
     @Test
-    fun shouldCreateLuggageParentMap() {
+    fun shouldCreateLuggageParentHierarchy() {
         // GIVEN
         val luggageRules = getLuggageRules()
 
         // WHEN
-        val parentMap = parentBagsHierarchyCreator.createParentHierarchy(luggageRules)
+        val parentHierarchy = parentBagsHierarchyCreator.createParentHierarchy(luggageRules)
 
         // THEN
-        assertThat(parentMap.size).isEqualTo(7)
-        assertThat(parentMap["shiny gold"]?.size).isEqualTo(2)
+        assertThat(parentHierarchy.size).isEqualTo(7)
+        assertThat(parentHierarchy["shiny gold"]?.size).isEqualTo(2)
+    }
+
+    @Test
+    fun shouldCreateLuggageChildHierarchy() {
+        // GIVEN
+        val luggageRules = getLuggageRules()
+
+        // WHEN
+        val childHierarchy = parentBagsHierarchyCreator.createChildHierarchy(luggageRules)
+
+        // THEN
+        assertThat(childHierarchy.size).isEqualTo(7)
+        val shinyGoldChildren = childHierarchy["shiny gold"]
+        assertThat(shinyGoldChildren).isNotNull
+        assertThat(shinyGoldChildren).containsExactlyInAnyOrder(
+            "dark olive" to 1,
+            "vibrant plum" to 2
+        )
     }
 
     private fun getLuggageRules(): List<LuggageRule> {

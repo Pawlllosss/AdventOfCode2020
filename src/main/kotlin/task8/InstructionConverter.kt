@@ -12,6 +12,6 @@ class InstructionConverter(instructionRepository: InstructionRepository) {
         val operation =
             operationByName[operationName] ?: throw IllegalArgumentException("Operation $operationName does not exist")
 
-        return Instruction(argumentAsNumber, operation)
+        return Instruction(operationName, argumentAsNumber, operation)
     }
 }

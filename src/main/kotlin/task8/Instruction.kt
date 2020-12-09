@@ -1,6 +1,6 @@
 package task8
 
-class Instruction(val argument: Int, val operation: (State, Int) -> State) {
+class Instruction(private val argument: Int, private val operation: (State, Int) -> State) {
 
     fun performOperation(currentState: State): State {
         return operation(currentState, argument)

@@ -1,6 +1,6 @@
 package task9
 
-object ElementsTestUtils {
+internal object ElementsTestUtils {
 
     fun getCorrectElements(): List<Long> = listOf(
         35,

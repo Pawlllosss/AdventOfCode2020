@@ -1,6 +1,6 @@
 package task8
 
-object InstructionsTestUtils {
+internal object InstructionsTestUtils {
 
     private val accInstr = "acc"
     private val jmpInstr = "jmp"

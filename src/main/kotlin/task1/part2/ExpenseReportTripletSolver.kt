@@ -2,10 +2,10 @@ package task1.part2
 
 class ExpenseReportTripletSolver {
 
-    fun findExpensesMultiplication(expenses: List<Int>, targetSum: Int): Int? {
+    fun findExpensesMultiplication(expenses: List<Long>, targetSum: Long): Long? {
         val maximumExpense = getMaximumExpense(expenses)
         val sortedAndFilteredExpenses = sortAndFilterExpensesList(expenses, targetSum)
-        val existingSums = HashMap<Int, Pair<Int, Int>>()
+        val existingSums = HashMap<Long, Pair<Long, Long>>()
 
         for ((index1, expense1) in sortedAndFilteredExpenses.withIndex()) {
             if (isTooSmallExpenseToGetTargetSum(expense1, maximumExpense, targetSum)) {
@@ -31,31 +31,31 @@ class ExpenseReportTripletSolver {
         return null
     }
 
-    private fun getMaximumExpense(expenses: List<Int>) = expenses.max() ?: Int.MAX_VALUE
+    private fun getMaximumExpense(expenses: List<Long>) = expenses.max() ?: Long.MAX_VALUE
 
-    private fun sortAndFilterExpensesList(expenses: List<Int>, targetSum: Int): List<Int> {
+    private fun sortAndFilterExpensesList(expenses: List<Long>, targetSum: Long): List<Long> {
         return expenses.sorted()
             .filter { expense -> expense <= targetSum }
     }
 
     private fun isTooSmallExpenseToGetTargetSum(
-        expense: Int,
-        maximumExpense: Int,
-        targetSum: Int
+        expense: Long,
+        maximumExpense: Long,
+        targetSum: Long
     ) = expense + 2 * maximumExpense < targetSum
 
-    private fun isTooBigExpenseToGetTargetSum(expense: Int, targetSum: Int) = 3 * expense > targetSum
+    private fun isTooBigExpenseToGetTargetSum(expense: Long, targetSum: Long) = 3 * expense > targetSum
 
     private fun isPossibleToGetTargetSum(
-        sums: Map<Int, Pair<Int, Int>>,
-        remaining: Int
+        sums: Map<Long, Pair<Long, Long>>,
+        remaining: Long
     ) = sums.contains(remaining)
 
     private fun calculateTargetSums(
-        sums: HashMap<Int, Pair<Int, Int>>,
-        remaining: Int,
-        expense1: Int
-    ): Int {
+        sums: HashMap<Long, Pair<Long, Long>>,
+        remaining: Long,
+        expense1: Long
+    ): Long {
         val (expense2, expense3) = sums[remaining]!!
         return expense1 * expense2 * expense3
     }

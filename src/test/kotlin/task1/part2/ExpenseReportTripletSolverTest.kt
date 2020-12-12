@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.CsvSource
 
 internal class ExpenseReportTripletSolverTest {
 
-    private val expenses = listOf(
+    private val expenses: List<Long> = listOf(
         5,
         7,
         113,
@@ -24,7 +24,7 @@ internal class ExpenseReportTripletSolverTest {
         "25,",
         "666666,"
     )
-    fun shouldReturnMultiplicationResultOfTargetSum(targetSum: Int, multiplicationResult: Int?) {
+    fun shouldReturnMultiplicationResultOfTargetSum(targetSum: Long, multiplicationResult: Long?) {
         // WHEN
         val multiplication = expenseReportSolver.findExpensesMultiplication(expenses, targetSum)
 

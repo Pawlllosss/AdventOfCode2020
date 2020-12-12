@@ -2,10 +2,10 @@ package task1.part1
 
 class ExpenseReportSolver {
 
-    fun findExpensesMultiplication(expenses: List<Int>, targetSum: Int): Int? {
+    fun findExpensesMultiplication(expenses: List<Long>, targetSum: Long): Long? {
         val maximumExpense = getMaximumExpense(expenses)
         val sortedAndFilteredExpenses = sortAndFilterExpensesList(expenses, targetSum)
-        val spottedExpenses = HashSet<Int>()
+        val spottedExpenses = HashSet<Long>()
 
 
         for (expense in sortedAndFilteredExpenses) {
@@ -23,21 +23,21 @@ class ExpenseReportSolver {
         return null
     }
 
-    private fun getMaximumExpense(expenses: List<Int>) = expenses.max() ?: Int.MAX_VALUE
+    private fun getMaximumExpense(expenses: List<Long>) = expenses.max() ?: Long.MAX_VALUE
 
-    private fun sortAndFilterExpensesList(expenses: List<Int>, targetSum: Int): List<Int> {
+    private fun sortAndFilterExpensesList(expenses: List<Long>, targetSum: Long): List<Long> {
         return expenses.sorted()
             .filter { expense -> expense <= targetSum }
     }
 
     private fun isTooSmallExpenseToGetTargetSum(
-        expense: Int,
-        maximumExpense: Int,
-        targetSum: Int
+        expense: Long,
+        maximumExpense: Long,
+        targetSum: Long
     ) = expense + maximumExpense < targetSum
 
     private fun isPossibleToGetTargetSum(
-        spottedExpenses: Set<Int>,
-        remaining: Int
+        spottedExpenses: Set<Long>,
+        remaining: Long
     ) = spottedExpenses.contains(remaining)
 }

@@ -8,7 +8,7 @@ import java.lang.IllegalStateException
 
 class InstructionFixer(
     private val accumulatorCounter: AccumulatorCounter,
-    private val instructionRepository: InstructionRepository
+    instructionRepository: InstructionRepository
 ) {
     private val jmpName = "jmp"
     private val nopName = "nop"
@@ -21,21 +21,20 @@ class InstructionFixer(
     }
 
     fun getAccumulatorOfFixedInstructions(instructions: List<Instruction>): Int {
-        val instructionsNumber = instructions.size
-
-        // TODO: check if works if doesnt need to change
         val (accumulator, completed) = accumulatorCounter.countUntilLoopOrEnd(instructions)
         if (completed) {
             return accumulator
         }
 
-        var currentState = State(1, 0)
-        var newInstruction: Instruction // TODO: move to while, or method....
+        return tryToFixAndReturnAccumulator(instructions)
+    }
 
-
-        while (currentState.instructionIndex < instructionsNumber) {
+    private fun tryToFixAndReturnAccumulator(instructions: List<Instruction>): Int {
+        var currentState = State(0, 0)
+        while (hasInstructionsToProcess(currentState, instructions)) {
+            val newInstruction: Instruction
             val index = currentState.instructionIndex
-            val currentInstruction = instructions[index]
+            val currentInstruction = getCurrentInstruction(instructions, currentState)
             if (isJmpInstruction(currentInstruction)) {
                 newInstruction = Instruction(nopName, currentInstruction.argument, nopOperation)
             } else if (isNopInstruction(currentInstruction)) {
@@ -45,8 +44,7 @@ class InstructionFixer(
                 continue
             }
 
-            // TODO: handle edge cases
-            val modifiedInstructions = instructions.subList(0, index) + newInstruction + instructions.subList(index + 1, instructionsNumber)
+            val modifiedInstructions = getListOfModifiedInstructions(instructions, index, newInstruction)
 
             val (accumulator, completed) = accumulatorCounter.countUntilLoopOrEnd(modifiedInstructions, index)
             if (completed) {
@@ -57,6 +55,22 @@ class InstructionFixer(
 
         throw IllegalStateException("Unable to fix instructions")
     }
+
+    private fun hasInstructionsToProcess(
+        currentState: State,
+        instructions: List<Instruction>
+    ) = currentState.instructionIndex < instructions.size
+
+    private fun getCurrentInstruction(
+        instructions: List<Instruction>,
+        currentState: State
+    ) = instructions[currentState.instructionIndex]
+
+    private fun getListOfModifiedInstructions(
+        instructions: List<Instruction>,
+        index: Int,
+        newInstruction: Instruction
+    ) = instructions.subList(0, index) + newInstruction + instructions.subList(index + 1, instructions.size)
 
     private fun isJmpInstruction(currentInstruction: Instruction): Boolean =
         currentInstruction.name == jmpName

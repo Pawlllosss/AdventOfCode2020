@@ -13,7 +13,7 @@ internal class InstructionFixerTest {
     private val instructionFixer = InstructionFixer(accumulatorCounter, instructionRepository)
 
     @Test
-    fun shouldReturnAccumulatorCounterOfExecutedFixedInstructions() {
+    fun shouldReturnAccumulatorOfExecutedFixedInstructions() {
         // GIVEN
         val instructions = InstructionsTestUtils.getLoopInstructions()
 
@@ -22,5 +22,18 @@ internal class InstructionFixerTest {
 
         // THEN
         Assertions.assertThat(accumulator).isEqualTo(8)
+    }
+
+    @Test
+    fun shouldReturnAccumulatorWhenInstructionsAreCorrect() {
+        // GIVEN
+        val instructions = InstructionsTestUtils.getValidInstructions()
+
+        // WHEN
+        val accumulator = instructionFixer.getAccumulatorOfFixedInstructions(instructions)
+
+        // THEN
+        Assertions.assertThat(accumulator).isEqualTo(8)
+
     }
 }

@@ -10,23 +10,7 @@ internal class FaultyXmasElementFinderTest {
     @Test
     fun shouldReturnFirstFaultyElement() {
         // GIVEN
-        val elements: List<Long> = listOf(
-            35,
-            20,
-            15,
-            25,
-            47,
-            40,
-            62,
-            55,
-            65,
-            95,
-            102,
-            117,
-            150,
-            182,
-            127
-        )
+        val elements: List<Long> = ElementsTestUtils.getFaultyElements()
 
         // WHEN
         val faultyElement = faultyElementFinder.findFirst(elements, 5)
@@ -38,22 +22,7 @@ internal class FaultyXmasElementFinderTest {
     @Test
     fun shouldReturnNullIfFaultElementWasNotFound() {
         // GIVEN
-        val elements: List<Long> = listOf(
-            35,
-            20,
-            15,
-            25,
-            47,
-            40,
-            62,
-            55,
-            65,
-            95,
-            102,
-            117,
-            150,
-            182
-        )
+        val elements: List<Long> = ElementsTestUtils.getCorrectElements()
 
         // WHEN
         val faultyElement = faultyElementFinder.findFirst(elements, 5)

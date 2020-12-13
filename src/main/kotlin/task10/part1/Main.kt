@@ -1,14 +1,16 @@
 package task10.part1
 
 import reader.NumbersReader
-import task10.JoltDifferenceCounter
+import task10.JoltInputMaintainer
 
 fun main() {
     val joltsPath = "src/main/kotlin/task10/resource/input"
     val numbersReader = NumbersReader()
     val jolts = numbersReader.getNumbers(joltsPath)
+    val joltInputMaintainer = JoltInputMaintainer()
     val differenceCounter = JoltDifferenceCounter()
-    val countByJoltDifference = differenceCounter.countDifferencesByJoltDifference(jolts)
+    val sortedJoltsWithOutletAndDevice = joltInputMaintainer.getSortedJoltsWithOutletAndDevice(jolts)
+    val countByJoltDifference = differenceCounter.countDifferencesByJoltDifference(sortedJoltsWithOutletAndDevice)
     val result = countByJoltDifference.let {
         val differencesByOne: Long = it.getOrDefault(1, 0)
         val differencesByThree: Long = it.getOrDefault(3, 0)

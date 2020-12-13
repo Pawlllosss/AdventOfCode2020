@@ -1,7 +1,8 @@
-package task10
+package task10.part1
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import task10.JoltTestUtils
 
 internal class JoltDifferenceCounterTest {
 
@@ -10,7 +11,7 @@ internal class JoltDifferenceCounterTest {
     @Test
     fun shouldReturnCountOfDifferencesGroupedByJolts1() {
         // GIVEN
-        val jolts = JoltTestUtils.getJolts()
+        val jolts = JoltTestUtils.getJolts().sorted()
 
         // WHEN
         val countByJolts = joltDifferenceCounter.countDifferencesByJoltDifference(jolts)
@@ -23,7 +24,7 @@ internal class JoltDifferenceCounterTest {
     @Test
     fun shouldReturnCountOfDifferencesGroupedByJolts2() {
         // GIVEN
-        val jolts = JoltTestUtils.getLessJolts()
+        val jolts = JoltTestUtils.getLessJolts().sorted()
 
         // WHEN
         val countByJolts = joltDifferenceCounter.countDifferencesByJoltDifference(jolts)

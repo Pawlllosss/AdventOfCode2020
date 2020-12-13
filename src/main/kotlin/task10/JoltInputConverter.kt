@@ -1,6 +1,6 @@
 package task10
 
-internal class JoltInputMaintainer {
+internal class JoltInputConverter {
 
     fun getSortedJoltsWithOutletAndDevice(
         jolts: List<Long>,

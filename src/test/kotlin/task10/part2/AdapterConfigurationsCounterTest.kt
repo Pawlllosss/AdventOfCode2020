@@ -4,9 +4,9 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import task10.JoltTestUtils
 
-internal class AdapterConfigurationCounterTest {
+internal class AdapterConfigurationsCounterTest {
 
-    private val configurationCounter = AdapterConfigurationCounter()
+    private val configurationCounter = AdapterConfigurationsCounter()
 
     @Test
     fun shouldReturnNumberOfPossibleConfigurations1() {

@@ -1,7 +1,6 @@
 package task10.part2
 
-class AdapterConfigurationCounter {
-
+class AdapterConfigurationsCounter {
 
     fun countConfigurations(sortedJolts: List<Long>, target: Long = sortedJolts.max() ?: 0, maxDifference: Long = 3): Long {
         val configurationsByJolt = prepareConfigurationsByJolt(target)

@@ -7,9 +7,9 @@ fun main() {
     val joltsPath = "src/main/kotlin/task10/resource/input"
     val numbersReader = NumbersReader()
     val jolts = numbersReader.getNumbers(joltsPath)
-    val joltInputMaintainer = JoltInputConverter()
+    val joltInputConverter = JoltInputConverter()
     val differenceCounter = JoltDifferenceCounter()
-    val sortedJoltsWithOutletAndDevice = joltInputMaintainer.getSortedJoltsWithOutletAndDevice(jolts)
+    val sortedJoltsWithOutletAndDevice = joltInputConverter.getSortedJoltsWithOutletAndDevice(jolts)
     val countByJoltDifference = differenceCounter.countDifferencesByJoltDifference(sortedJoltsWithOutletAndDevice)
     val result = countByJoltDifference.let {
         val differencesByOne: Long = it.getOrDefault(1, 0)

@@ -11,7 +11,7 @@ internal class JoltDifferenceCounterTest {
     @Test
     fun shouldReturnCountOfDifferencesGroupedByJolts1() {
         // GIVEN
-        val jolts = JoltTestUtils.getJolts().sorted()
+        val jolts = JoltTestUtils.getJolts()
 
         // WHEN
         val countByJolts = joltDifferenceCounter.countDifferencesByJoltDifference(jolts)
@@ -24,7 +24,7 @@ internal class JoltDifferenceCounterTest {
     @Test
     fun shouldReturnCountOfDifferencesGroupedByJolts2() {
         // GIVEN
-        val jolts = JoltTestUtils.getLessJolts().sorted()
+        val jolts = JoltTestUtils.getLessJolts()
 
         // WHEN
         val countByJolts = joltDifferenceCounter.countDifferencesByJoltDifference(jolts)

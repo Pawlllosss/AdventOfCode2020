@@ -4,17 +4,17 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import task10.JoltTestUtils
 
-internal class AdapterPossibleConfigurationCounterTest {
+internal class AdapterConfigurationCounterTest {
 
-    private val configurationCounter = AdapterPossibleConfigurationCounter()
+    private val configurationCounter = AdapterConfigurationCounter()
 
     @Test
     fun shouldReturnNumberOfPossibleConfigurations1() {
         // GIVEN
-        val jolts = JoltTestUtils.getJoltsSet()
+        val jolts = JoltTestUtils.getJolts()
 
         // WHEN
-        val possibleConfigurations = configurationCounter.countPossibleConfigurations(jolts)
+        val possibleConfigurations = configurationCounter.countConfigurations(jolts)
 
         // THEN
         assertThat(possibleConfigurations).isEqualTo(19208)
@@ -23,10 +23,10 @@ internal class AdapterPossibleConfigurationCounterTest {
     @Test
     fun shouldReturnNumberOfPossibleConfigurations2() {
         // GIVEN
-        val jolts = JoltTestUtils.getLessJoltsSet()
+        val jolts = JoltTestUtils.getLessJolts()
 
         // WHEN
-        val possibleConfigurations = configurationCounter.countPossibleConfigurations(jolts)
+        val possibleConfigurations = configurationCounter.countConfigurations(jolts)
 
         // THEN
         assertThat(possibleConfigurations).isEqualTo(8)

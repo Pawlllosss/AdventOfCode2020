@@ -8,8 +8,16 @@ data class FloorPlan(val seats: List<List<SeatState>>) {
 
     init {
         val maxRow = seats.size - 1
-        val maxColumn = if (maxRow >= 0) seats[0].size else -1
+        val maxColumn = if (maxRow >= 0) seats[0].size - 1 else -1
         maxCoordinates = maxRow to maxColumn
+    }
+
+    fun getNextState(): FloorPlan {
+        val seatsInNextState = seats.map {
+            it.map { state -> state.nextState(this) }
+        }
+
+        return FloorPlan(seatsInNextState)
     }
 
     fun getSeat(coordinates: Pair<Int, Int>): SeatState {

@@ -4,7 +4,7 @@ import task11.seat.state.OccupiedSeat
 
 class StableFloorPlanFinder {
 
-    val previousStates = HashSet<FloorPlan>()
+    private val previousStates = HashSet<FloorPlan>()
 
     fun countOccupiedSeatsWhenStableState(floorPlan: FloorPlan): Int {
         var nextFloorPlan = floorPlan

@@ -5,7 +5,7 @@ import task11.FloorPlan
 class OccupiedSeat(private val seatCoordinates: Pair<Int, Int>): SeatState {
 
     companion object{
-        val symbol = '#'
+        const val symbol = '#'
     }
 
     override val symbol: Char
@@ -13,8 +13,8 @@ class OccupiedSeat(private val seatCoordinates: Pair<Int, Int>): SeatState {
 
     override fun nextState(floorPlan: FloorPlan): SeatState {
         var occupiedSeats = 0
-        val adjacentSeatsCoordinates = floorPlan.getAdjacentSeatsCoordinates(seatCoordinates)
-        adjacentSeatsCoordinates.map(floorPlan::getSeat)
+        val adjacentSeats = floorPlan.getAdjacentSeats(seatCoordinates)
+        adjacentSeats
             .forEach {
                 if (isOccupied(it)) {
                     occupiedSeats++

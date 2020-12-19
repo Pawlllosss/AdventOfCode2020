@@ -1,7 +1,6 @@
 package task11
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import task11.seat.state.EmptySeat
 import task11.seat.state.Floor
@@ -20,13 +19,13 @@ internal class FloorPlanTest {
         val floorPlan = FloorPlan(seatsMatrix)
 
         // WHEN
-        val adjacentCoordinates = floorPlan.getAdjacentSeatsCoordinates(0 to 0)
+        val adjacentCoordinates = floorPlan.getAdjacentSeats(0 to 0)
 
         // THEN
         assertThat(adjacentCoordinates).containsExactly(
-            0 to 1,
-            1 to 0,
-            1 to 1
+            OccupiedSeat(0 to 1),
+            Floor(),
+            EmptySeat(1 to 1)
         )
     }
 }

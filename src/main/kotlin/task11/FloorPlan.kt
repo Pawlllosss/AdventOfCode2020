@@ -25,7 +25,7 @@ data class FloorPlan(val seats: List<List<SeatState>>) {
         return seats[row][column]
     }
 
-    fun getAdjacentSeatsCoordinates(coordinates: Pair<Int, Int>): List<Pair<Int, Int>> {
+    fun getAdjacentSeats(coordinates: Pair<Int, Int>): List<SeatState> {
         val (row, column) = coordinates
 
         return listOf(
@@ -36,8 +36,9 @@ data class FloorPlan(val seats: List<List<SeatState>>) {
             row to column + 1,
             row + 1 to column - 1,
             row + 1 to column,
-            row + 1 to column + 1
-        ).filter {coords -> isInBounds(coords, maxCoordinates)}
+            row + 1 to column + 1)
+            .filter { coords -> isInBounds(coords, maxCoordinates) }
+            .map(this::getSeat)
     }
 
     private fun isInBounds(coordinates: Pair<Int, Int>, maxCoordinates: Pair<Int, Int>): Boolean {
@@ -51,5 +52,5 @@ data class FloorPlan(val seats: List<List<SeatState>>) {
         return false
     }
 
-    private fun isInBounds(value: Int, maxValue: Int) = value in 0 .. maxValue
+    private fun isInBounds(value: Int, maxValue: Int) = value in 0..maxValue
 }

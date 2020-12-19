@@ -5,7 +5,7 @@ import task11.FloorPlan
 class Floor: SeatState {
 
     companion object{
-        val symbol = '.'
+        const val symbol = '.'
     }
 
     override val symbol: Char

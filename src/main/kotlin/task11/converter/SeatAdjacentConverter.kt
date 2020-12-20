@@ -1,13 +1,13 @@
-package task11
+package task11.converter
 
 import task11.seat.state.EmptySeat
 import task11.seat.state.Floor
 import task11.seat.state.OccupiedSeat
 import task11.seat.state.SeatState
 
-class SeatConverter {
+class SeatAdjacentConverter: SeatConverter {
 
-    fun convertToSeat(row: Int, column: Int, symbol: Char): SeatState {
+    override fun convertToSeat(row: Int, column: Int, symbol: Char): SeatState {
         val coordinates = row to column
 
         return when (symbol) {

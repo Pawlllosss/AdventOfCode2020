@@ -1,12 +1,12 @@
-package task11.part1
+package task11.part2
 
 import task11.FloorPlanReader
-import task11.converter.SeatAdjacentConverter
 import task11.StableFloorPlanFinder
+import task11.converter.SeatInSightConverter
 
 fun main() {
     val floorPlanPath = "src/main/kotlin/task11/resource/input"
-    val seatConverter = SeatAdjacentConverter()
+    val seatConverter = SeatInSightConverter()
     val floorPlanReader = FloorPlanReader(seatConverter)
     val stableFloorPlanFinder = StableFloorPlanFinder()
     val floorPlan = floorPlanReader.getFloorPlan(floorPlanPath)

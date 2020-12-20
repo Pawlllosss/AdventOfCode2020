@@ -1,5 +1,7 @@
 package task11
 
+import task11.converter.SeatAdjacentConverter
+import task11.converter.SeatConverter
 import task11.seat.state.SeatState
 import utils.FileUtils
 import java.io.BufferedReader

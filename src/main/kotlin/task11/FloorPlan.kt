@@ -1,5 +1,6 @@
 package task11
 
+import task11.seat.state.Floor
 import task11.seat.state.SeatState
 
 data class FloorPlan(val seats: List<List<SeatState>>) {
@@ -20,25 +21,21 @@ data class FloorPlan(val seats: List<List<SeatState>>) {
         return FloorPlan(seatsInNextState)
     }
 
-    fun getSeat(coordinates: Pair<Int, Int>): SeatState {
-        val (row, column) = coordinates
-        return seats[row][column]
-    }
-
     fun getAdjacentSeats(coordinates: Pair<Int, Int>): List<SeatState> {
-        val (row, column) = coordinates
+        val directions = Direction.values()
 
-        return listOf(
-            row - 1 to column - 1,
-            row - 1 to column,
-            row - 1 to column + 1,
-            row to column - 1,
-            row to column + 1,
-            row + 1 to column - 1,
-            row + 1 to column,
-            row + 1 to column + 1)
+        return directions.map { direction -> direction.moveToNext(coordinates) }
             .filter { coords -> isInBounds(coords, maxCoordinates) }
             .map(this::getSeat)
+    }
+
+    fun getSeatsInSight(coordinates: Pair<Int, Int>): List<SeatState> {
+        val directions = Direction.values()
+
+        return directions.mapNotNull {
+            direction ->
+            getSeatInSightOrNull(coordinates, direction)
+        }
     }
 
     private fun isInBounds(coordinates: Pair<Int, Int>, maxCoordinates: Pair<Int, Int>): Boolean {
@@ -53,4 +50,37 @@ data class FloorPlan(val seats: List<List<SeatState>>) {
     }
 
     private fun isInBounds(value: Int, maxValue: Int) = value in 0..maxValue
+
+    private fun getSeat(coordinates: Pair<Int, Int>): SeatState {
+        val (row, column) = coordinates
+        return seats[row][column]
+    }
+
+    private fun getSeatInSightOrNull(
+        coordinates: Pair<Int, Int>,
+        direction: Direction
+    ): SeatState? {
+        var nextCoordinates = direction.moveToNext(coordinates)
+
+        while (isInBounds(nextCoordinates, maxCoordinates)) {
+            val seat = getSeat(nextCoordinates)
+
+            if (seat.symbol != Floor.symbol) {
+                return seat
+            }
+            nextCoordinates = direction.moveToNext(nextCoordinates)
+        }
+
+        return null
+    }
+
+    override fun toString(): String {
+        val floorPlanStringBuilder = StringBuilder()
+        for (row in seats) {
+            val seatsInRow = row.map { seat -> seat.symbol }
+            floorPlanStringBuilder.appendln(seatsInRow)
+        }
+
+        return floorPlanStringBuilder.toString()
+    }
 }

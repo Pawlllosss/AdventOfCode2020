@@ -1,16 +1,16 @@
-package task11.part1
+package task11.part2
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import task11.FloorPlanReader
-import task11.SeatConverter
 import task11.StableFloorPlanFinder
+import task11.converter.SeatInSightConverter
 
-internal class StableStateIntegrationTest {
+internal class StableStateInSightSeatsIntegrationTest {
 
     private val floorPlanPath = "src/test/kotlin/task11/resource/FloorPlanExample.txt"
 
-    private val seatConverter = SeatConverter()
+    private val seatConverter = SeatInSightConverter()
     private val floorPlanReader = FloorPlanReader(seatConverter)
     private val stableFloorPlanFinder = StableFloorPlanFinder()
 
@@ -18,6 +18,6 @@ internal class StableStateIntegrationTest {
     fun shouldReadFloorPlanFromFileAndReturnNumberOfOccupiedSeatsWhenFloorPlanIsStable() {
         val floorPlan = floorPlanReader.getFloorPlan(floorPlanPath)
         val occupiedSeats = stableFloorPlanFinder.countOccupiedSeatsWhenStableState(floorPlan)
-        assertThat(occupiedSeats).isEqualTo(37)
+        assertThat(occupiedSeats).isEqualTo(26)
     }
 }

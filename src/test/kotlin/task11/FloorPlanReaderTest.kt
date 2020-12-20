@@ -2,13 +2,14 @@ package task11
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import task11.converter.SeatAdjacentConverter
 import task11.seat.state.EmptySeat
 import task11.seat.state.Floor
 import task11.seat.state.OccupiedSeat
 
 internal class FloorPlanReaderTest {
 
-    private val seatConverter = SeatConverter()
+    private val seatConverter = SeatAdjacentConverter()
     private val floorPlanReader = FloorPlanReader(seatConverter)
 
     @Test

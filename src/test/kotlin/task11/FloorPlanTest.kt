@@ -22,7 +22,7 @@ internal class FloorPlanTest {
         val adjacentCoordinates = floorPlan.getAdjacentSeats(0 to 0)
 
         // THEN
-        assertThat(adjacentCoordinates).containsExactly(
+        assertThat(adjacentCoordinates).containsExactlyInAnyOrder(
             OccupiedSeat(0 to 1),
             Floor(),
             EmptySeat(1 to 1)
